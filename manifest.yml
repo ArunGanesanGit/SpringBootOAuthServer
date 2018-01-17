@@ -1,0 +1,8 @@
+---
+applications:
+- name: identity
+  path: target/identity-auth-server.jar
+  memory: 512M
+  instances: 1
+  domain: cfapps.io
+  #random-route: true

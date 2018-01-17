@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Authorization</title>
+    <link href="../static/css/common.css" th:href="@{/css/common.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<body style="background-color: #eee">
+<div class="container">
+    <form th:action="@{/login}" method="post" class="form-signin">
+        <h2 class="form-heading">Login</h2>
+        <div th:if="${param.error}" class="has-error">
+            Invalid username and password.
+        </div>
+        <div th:if="${param.logout}" class="has-error">
+            You have been logged out.
+        </div>
+        <input type="text" class="form-control" name="username" placeholder="Username" />
+        <input type="password" class="form-control" name="password" placeholder="Password" />
+        <input type="submit" class="btn btn-md btn-success btn-block" value="Login"/>
+        <div align="center" style="padding-top:10px; margin-bottom:15px;">
+            <b><a th:href="@{/register}" style="color: #858282;" class="new-account">Create New Account</a></b>
+        </div>
+
+        <div align="center" style="margin-top:15px;padding-top:10px; margin-bottom:15px;
+            border-top: 1px solid #cccccc; color: #858282; font-size: large; font-family: monospace">
+            You may also connect with
+        </div>
+
+        <a th:href="@{/login/google}" type="button" class="btn btn-block btn-google">
+            <i class="fa fa-google" style="padding-right:10px;"></i>  Google
+        </a>
+        <a th:href="@{/login/facebook}" type="button" class="btn btn-block btn-facebook">
+            <i class="fa fa-facebook" style="padding-right:10px;"></i>  Facebook
+        </a>
+        <a th:href="@{/login/github}" type="button" class="btn btn-block btn-github" style="padding-right:10px;">
+            <i class="fa fa-github" style="padding-right:10px;"></i>  Github
+        </a>
+    </form>
+</div>
+</body>
+<link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+</html>

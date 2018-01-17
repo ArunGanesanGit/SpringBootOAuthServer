@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>User Profile</title>
+    <link href="../static/css/common.css" th:href="@{/css/common.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<body style="background-color: #eee">
+
+<div class="container">
+    <h3>Welcome <small style="font-family: cursive; color: green;" th:text="${user.firstName}"></small> <small style="font-family: cursive; color: green;" th:text="${user.lastName}"></small> !</h3>
+
+    <p></p>
+    <div class="col-8" align="center" style="border-top: 1px solid #ccc;padding-top: 25px;">
+        <div class="alert alert-info text-center" th:if="${updated}">
+            <strong><span>Profile updated successfully!</span></strong>
+        </div>
+        <form th:action="@{/profile}" method="post" class="form-signin">
+            <b>User ID: <span style="color: #c12e2a" th:text="${user.id}"></span></b>
+            <input type="hidden" name="id" th:value="${user.id}" />
+            <input type="text" class="form-control" name="firstName" th:value="${user.firstName}" placeholder="First Name" />
+            <input type="text" class="form-control" name="middleName" th:value="${user.middleName}" placeholder="Middle Name" />
+            <input type="text" class="form-control" name="lastName" th:value="${user.lastName}" placeholder="Last Name" />
+            <input type="text" class="form-control" name="email" th:value="${user.email}" placeholder="E-Mail" />
+            <div th:if="${user.customProvider}" class="form-group row" style="padding-top:5px;">
+                <div class="col-md-2" style="padding-top:3px;">
+                    <b>Custom</b>
+                </div>
+                <div class="col-md-2" >
+                    <input type="checkbox" class="form-control" name="customProvider" checked="checked" />
+                </div>
+            </div>
+            <div th:if="${user.googleProvider}" class="form-group row" style="padding-top:5px;">
+                <div class="col-md-2" style="padding-top:3px;">
+                    <b>Google</b>
+                </div>
+                <div class="col-md-2" >
+                    <input type="checkbox" class="form-control" name="googleProvider" checked="checked" />
+                </div>
+            </div>
+            <div th:if="${user.facebookProvider}" class="form-group row" style="padding-top:5px;">
+                <div class="col-md-2" style="padding-top:3px;">
+                    <b>Facebook</b>
+                </div>
+                <div class="col-md-2" >
+                    <input type="checkbox" class="form-control" name="facebookProvider" checked="checked" />
+                </div>
+            </div>
+            <div th:if="${user.githubProvider}" class="form-group row" style="padding-top:5px;">
+                <div class="col-md-2" style="padding-top:3px;">
+                    <b>Github</b>
+                </div>
+                <div class="col-md-2" >
+                    <input type="checkbox" class="form-control" name="githubProvider" checked="checked" />
+                </div>
+            </div>
+            <input type="submit" class="btn btn-md btn-success btn-block" value="Update Profile"/>
+        </form>
+        <br />
+        <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
+        <a th:href="@{/login}" class="btn btn-info">Add Provider</a>
+    </div>
+</div>
+
+</body>
+<link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+</html>
